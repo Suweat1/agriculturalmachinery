@@ -1,5 +1,7 @@
 package com.agriculturalmachinery.module;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
     /*
      * 定义租赁订单模块的基本变量
@@ -8,16 +10,40 @@ import java.util.List;
 public abstract class RentalOrderInfo {
 
     //订单编号
-    private int orderId;
+    private String orderId;
+
+    //get订单编号
+    public String getOrderId() {
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        String datePart = sdf.format(now);
+        orderId = "ORD" + datePart;
+        return orderId;
+    }
 
     //农机订单list
     private List<AgriculturalMachineryInfo> machineryList;
 
+    //get农机订单
+    public List<AgriculturalMachineryInfo> getMachineryList() {
+        return machineryList;
+    }
+
     //租赁总天数
     private int rentalDays;
 
+    //get租赁天数
+    public int getRentalDays() {
+        return rentalDays;
+    }
+
     //总花费
     private double totalCost;
+
+    //get总花费
+    public double getTotalCost() {
+        return totalCost;
+    }
 
     //将农机添加到订单中，输入一个AgriculturalMachinery的对象，使用add()方法添加到machineryList中
     public abstract void addMachinery(AgriculturalMachineryInfo machine);
