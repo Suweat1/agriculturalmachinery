@@ -1,12 +1,12 @@
-package com.agriculturalmachinery.controller.payment;
+package com.agriculturalmachinery.controller.payment.method;
 
-import com.agriculturalmachinery.module.AgriculturalMachineryInfo;
-import com.agriculturalmachinery.module.PaymentInfo;
+import com.agriculturalmachinery.controller.payment.PaymentInfo;
 
 public class AlipayPayment extends PaymentInfo {
     private int accountNo;
     public AlipayPayment(double paymentAmount, int accountNo) {
-        this.paymentAmount = paymentAmount;
+        super(paymentAmount);
+
         this.accountNo = accountNo;
     }
     public boolean processPayment() {
