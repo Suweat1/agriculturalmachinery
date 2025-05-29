@@ -24,7 +24,21 @@ public class PaymentSwitch {
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        //是否选择有效支付方式
+         boolean Choice=false;
+         //储存支付方式
+         PaymentInfo paymentInfo = null;
+         while(!Choice){
+             try{
+                 System.out.println("请选择支付方式: ");
+                 System.out.println("1,微信支付");
+                 System.out.println("2，支付宝支付");
+                 System.out.println("3,银行卡支付");
+                 System.out.println("请输入数字编号");
 
+             }
+
+         }
 
     }
 }
