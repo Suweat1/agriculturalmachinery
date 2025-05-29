@@ -3,9 +3,11 @@ package com.agriculturalmachinery.module;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-    /*
+    /**
      * 定义租赁订单模块的基本变量
      * 定义了抽象方法
+     * 无构造器，默认空构造器，就是各个属性初始值为null
+     * 部分属性需要通过Scanner输入
      */
 public abstract class RentalOrderInfo {
 

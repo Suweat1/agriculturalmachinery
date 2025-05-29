@@ -6,9 +6,6 @@ import com.agriculturalmachinery.module.RentalOrderInfo;
 import java.util.Iterator;
 
 public class RentalOrder extends RentalOrderInfo {
-    //实例化
-    RentalOrder rentalOrder = new RentalOrder();
-
     //构造器
     public RentalOrder() {
         super();
@@ -39,6 +36,7 @@ public class RentalOrder extends RentalOrderInfo {
         double totalCost = calculateTotal();
         System.out.println("【订单编号】" + orderId);
         System.out.println("【租赁农机】");
+        System.out.println();
 
     }
 }
