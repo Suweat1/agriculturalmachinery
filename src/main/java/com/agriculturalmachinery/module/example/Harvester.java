@@ -1,7 +1,11 @@
 package com.agriculturalmachinery.module.example;
 
 import com.agriculturalmachinery.module.AgriculturalMachineryInfo;
-
+    /*
+     * 定义了一些变量
+     * 继承了AgriculturalMachineryInfo，并且重写其中的calculateRent方法，进行计算租金
+     * 收割机的构造方法
+     */
 public class Harvester  extends AgriculturalMachineryInfo {
 
     //割台高度

@@ -1,5 +1,8 @@
 package com.agriculturalmachinery.module;
-
+    /*
+     * 定义了农机的信息类，并且抽象
+     * 并且使用枚举类定义了一些状态量
+     */
 public abstract class AgriculturalMachineryInfo {
     //农机编号
     private int machineId;
