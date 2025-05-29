@@ -19,5 +19,6 @@ public abstract class AgriculturalMachineryInfo {
     }
     //抽象方法 calculateRent()：用于计算租金，具体计费逻辑由子类实现
     public abstract double calculateRent();
+
 }
 
