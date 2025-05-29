@@ -1,7 +1,9 @@
 package com.agriculturalmachinery.module;
 
 public abstract class AgriculturalMachineryInfo {
+    //农机编号
     private int machineId;
+    //基础租金
     protected double baseRent;
     /*
      * 定义了Status枚举类，有IDLE闲置，IN_USE使用中，UNDER_MAINTENANCE维护中
