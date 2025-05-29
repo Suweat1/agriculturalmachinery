@@ -3,13 +3,14 @@ package com.agriculturalmachinery.controller.payment;
 import com.agriculturalmachinery.module.AgriculturalMachineryInfo;
 import com.agriculturalmachinery.module.PaymentInfo;
 
-public class AlipayPayment extends PaymentInfo {
-    private int accountNo;
-    public AlipayPayment(double paymentAmount, int accountNo) {
+public class BankCardPayment extends PaymentInfo {
+    private int cardNo;
+    public BankCardPayment(double paymentAmount, int cardNo) {
         this.paymentAmount = paymentAmount;
-        this.accountNo = accountNo;
+        this.cardNo = cardNo;
     }
     public boolean processPayment() {
 
     }
+
 }
