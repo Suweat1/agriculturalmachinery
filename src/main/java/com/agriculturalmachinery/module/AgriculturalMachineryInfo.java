@@ -18,8 +18,6 @@ public abstract class AgriculturalMachineryInfo {
          this.machineId = machineId;
     }
 
-    //在不同类中有不同的名字，在拖拉机中是TR，在收割机是HV
-    public abstract String renameMachineId();
 
 
     //基础租金

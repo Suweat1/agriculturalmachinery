@@ -14,8 +14,8 @@ public class Tractor extends AgriculturalMachineryInfo {
     double maxPullForce;
 
     //构造方法
-    public Tractor(double horsePower, double maxPullForce) {
-        super();
+    public Tractor(double horsePower, double maxPullForce, String machineId, double baseRent) {
+        super(machineId, baseRent);
         this.horsePower = horsePower;
         this.maxPullForce = maxPullForce;
     }
@@ -23,7 +23,7 @@ public class Tractor extends AgriculturalMachineryInfo {
     //calculate方法的实现，基础租金 + 马力 × 0.5
     @Override
     public double calculateRent(){
-
+        return baseRent + horsePower * 0.5;
     }
 
 }
