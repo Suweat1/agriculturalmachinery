@@ -1,4 +1,4 @@
-package com.agriculturalmachinery.controller.payment;
+package com.agriculturalmachinery.module;
 
 public abstract class   PaymentInfo {
     public double paymentAmount;

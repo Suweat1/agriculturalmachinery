@@ -3,6 +3,8 @@ package com.agriculturalmachinery.controller.payment;
 import com.agriculturalmachinery.controller.payment.method.AlipayPayment;
 import com.agriculturalmachinery.controller.payment.method.BankCardPayment;
 import com.agriculturalmachinery.controller.payment.method.WechatPayment;
+import com.agriculturalmachinery.module.PaymentInfo;
+
 import java.util.Scanner;
 
 //用户选择支付方式
@@ -10,7 +12,7 @@ public class PaymentSwitch {
     enum PaymentMethod{
         WechatPay,AliPay,BankCardPay
     }
-    static  PaymentInfo creatPayment(double Amount, int Id, PaymentMethod method){
+    static PaymentInfo creatPayment(double Amount, int Id, PaymentMethod method){
         switch (method) {
             case WechatPay:
                 return new WechatPayment(Amount, Id);

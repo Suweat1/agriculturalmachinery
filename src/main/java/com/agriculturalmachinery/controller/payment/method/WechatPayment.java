@@ -1,6 +1,6 @@
 package com.agriculturalmachinery.controller.payment.method;
 
-import com.agriculturalmachinery.controller.payment.PaymentInfo;
+import com.agriculturalmachinery.module.PaymentInfo;
 
 public class WechatPayment extends PaymentInfo {
     private int OpenId;
