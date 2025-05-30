@@ -29,6 +29,8 @@ public class RentalOrder extends RentalOrderInfo {
         return total;
     }
 
+    //用于返回一个
+
     //打印订单
     public void generateReceipt(){
         String orderId = getOrderId();
@@ -36,7 +38,7 @@ public class RentalOrder extends RentalOrderInfo {
         double totalCost = calculateTotal();
         System.out.println("【订单编号】" + orderId);
         System.out.println("【租赁农机】");
-        System.out.println();
+        for()
 
     }
 }

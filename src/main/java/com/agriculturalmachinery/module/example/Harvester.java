@@ -23,13 +23,9 @@ public class Harvester extends AgriculturalMachineryInfo {
     //calculate方法的重写与实现，租金计算方式：基础租金 + 割台宽度 × 10
     @Override
     public double calculateRent(){
-        return 0;
+        return baseRent + cuttingWidth * 10;
     }
 
-    //重写renameMachineId方法，Harvester代号是HV
-    @Override
-    public String renameMachineId(){
-        return "HV";
-    }
+
 
 }
