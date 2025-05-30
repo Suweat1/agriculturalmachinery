@@ -26,6 +26,28 @@ public class Harvester extends AgriculturalMachineryInfo {
         return baseRent + cuttingWidth * 10;
     }
 
+    //getMachineryName的方法实现
+     /**
+      * 输出收割机
+       */
+     @Override
+     public String getMachineryName() {
+         return "收割机";
+     }
+
+
+
+     /**
+      * 开始
+      * 返回特征值
+      * 并格式化成：割台宽度：i m
+      */
+     //返回特征值的getProperValue方法的实现
+     @Override
+     public String getProperValue(){
+         String properValue = "割台宽度：" + this.cuttingWidth + "m";
+         return properValue;
+     }
 
 
 }

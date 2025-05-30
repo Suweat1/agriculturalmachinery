@@ -13,9 +13,19 @@ public abstract class AgriculturalMachineryInfo {
         return machineId;
     }
 
-
+    /**
+     * 开始
+     * 输入一个整型数 i
+     * 通过String.format方法
+     * 变成00i的形式，用0补齐
+     * 把农机编号格式化成TR001 HV002这样的String格式
+     */
     //格式化农机编号
-    public abstract String formatMachineId(int i);
+    public String formatMachineId(int i) {
+       String index = String.format("%03d", i);
+         String fomattedmachineId = getMachineId() + index;
+         return fomattedmachineId;
+    }
 
     //设置set农机编号
     public void setMachineId(String machineId) {

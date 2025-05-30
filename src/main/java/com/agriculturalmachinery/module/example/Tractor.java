@@ -36,20 +36,6 @@ public class Tractor extends AgriculturalMachineryInfo {
          return "拖拉机";
      }
 
-    /**
-     * 开始
-     * 输入一个整型数 i
-     * 通过String.format方法
-     * 变成00i的形式，用0补齐
-     * 把农机编号格式化成TR001 HV002这样的String格式
-     */
-    //重写实现formatMachineId方法
-     @Override
-     public String formatMachineId(int i){
-         String index = String.format("%03d", i);
-         String fomattedmachineId = getMachineId() + index;
-         return fomattedmachineId;
-     }
 
      /**
       * 开始
@@ -59,6 +45,7 @@ public class Tractor extends AgriculturalMachineryInfo {
      //返回特征值的getProperValue方法的实现
      @Override
      public String getProperValue(){
-
+         String properValue = "马力：" + this.horsePower + "HP";
+         return properValue;
      }
  }

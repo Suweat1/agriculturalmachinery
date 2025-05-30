@@ -45,11 +45,9 @@ public class RentalOrder extends RentalOrderInfo {
          * 结束
          */
         for(int i = 1; i <= getMachineryList().size(); i++){
-            System.out.print(i + "." + getMachineryList().get(i - 1).getMachineryName() + "（编号：" + getMachineryList().get(i).formatMachineId(i) + "," + );
-
+            AgriculturalMachineryInfo tempMachine = getMachineryList().get(i - 1);
+            System.out.print(i + "." + tempMachine.getMachineryName() + "（编号：" + tempMachine.formatMachineId(i) + "," + tempMachine.getProperValue() + " × " + getRentalDays() + "天 → 租金：" + getRentalDays() * tempMachine.calculateRent() + "元");
         }
-
-
-
+        System.out.println("【总费用】" + getTotalCost() + "元");
     }
 }
