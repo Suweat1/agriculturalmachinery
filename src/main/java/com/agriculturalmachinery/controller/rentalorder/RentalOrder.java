@@ -45,7 +45,7 @@ public class RentalOrder extends RentalOrderInfo {
          * 结束
          */
         for(int i = 1; i <= getMachineryList().size(); i++){
-            System.out.print(i + "." + getMachineryList().get(i - 1).getMachineryName() + "（编号：" + getMachineryList().get(i).getMachineId());
+            System.out.print(i + "." + getMachineryList().get(i - 1).getMachineryName() + "（编号：" + getMachineryList().get(i).formatMachineId(i) + "," + );
 
         }
 

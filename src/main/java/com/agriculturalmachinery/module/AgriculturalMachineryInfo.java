@@ -15,14 +15,15 @@ public abstract class AgriculturalMachineryInfo {
 
 
     //格式化农机编号
-    public abstract String formatMachineId();
+    public abstract String formatMachineId(int i);
 
     //设置set农机编号
     public void setMachineId(String machineId) {
          this.machineId = machineId;
     }
 
-
+    //返回特征值，如：马力：120HP
+    public abstract String getProperValue();
 
     //基础租金
     protected double baseRent;
