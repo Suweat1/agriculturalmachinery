@@ -9,6 +9,9 @@ public class gittest {
         System.out.println("Hello World");
         System.out.println("Hello World");
         System.out.println("Hello World");
+
+        //测试
+        System.out.println("hello world");
     }
 
 
