@@ -34,5 +34,6 @@ public class PaymentSwitch {
             }
         }while(option!=0);
     }
+
     }
 
