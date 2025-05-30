@@ -26,4 +26,18 @@ public class Tractor extends AgriculturalMachineryInfo {
         return baseRent + horsePower * 0.5;
     }
 
+    //getMachineryName的方法实现
+     /**
+      * 输出拖拉机
+       */
+     @Override
+     public String getMachineryName() {
+         return "拖拉机";
+     }
+
+    /**
+     * 开始
+     * 把农机编号格式化成TR001 HV002这样的String格式
+     * 此类定义抽象方法
+     */
 }

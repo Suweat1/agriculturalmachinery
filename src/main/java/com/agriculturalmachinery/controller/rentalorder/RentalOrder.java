@@ -38,7 +38,18 @@ public class RentalOrder extends RentalOrderInfo {
         double totalCost = calculateTotal();
         System.out.println("【订单编号】" + orderId);
         System.out.println("【租赁农机】");
-        for()
+        /**
+         * 开始
+         * for循环 遍历订单中的元素 直到循环变量i小于订单的大小
+         * 打印每个订单的信息 1. 拖拉机（编号：TR001，马力：120HP） × 3天 → 租金：600元
+         * 结束
+         */
+        for(int i = 1; i <= getMachineryList().size(); i++){
+            System.out.print(i + "." + getMachineryList().get(i - 1).getMachineryName() + "（编号：" + getMachineryList().get(i).getMachineId());
+
+        }
+
+
 
     }
 }

@@ -13,6 +13,10 @@ public abstract class AgriculturalMachineryInfo {
         return machineId;
     }
 
+
+    //格式化农机编号
+    public abstract String formatMachineId();
+
     //设置set农机编号
     public void setMachineId(String machineId) {
          this.machineId = machineId;
@@ -47,5 +51,7 @@ public abstract class AgriculturalMachineryInfo {
     //抽象方法 calculateRent()：用于计算租金，具体计费逻辑由子类实现
     public abstract double calculateRent();
 
+    //返回农机类型名
+    public abstract String getMachineryName();
 }
 

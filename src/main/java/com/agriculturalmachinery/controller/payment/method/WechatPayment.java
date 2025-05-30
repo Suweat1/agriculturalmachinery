@@ -12,5 +12,7 @@ public class WechatPayment extends PaymentInfo {
     public boolean processPayment() {
     System.out.println("正在通过微信支付金额:"+paymentAmount+"账号为："+OpenId);
     return true;
+
+
     }
 }
