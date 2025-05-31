@@ -12,6 +12,7 @@ public class AlipayPayment extends PaymentInfo {
     public boolean processPayment() {
         System.out.println("正在通过支付宝支付金额" + paymentAmount + " 账号为" + accountNo);
         return true;
+
     }
 
 }
