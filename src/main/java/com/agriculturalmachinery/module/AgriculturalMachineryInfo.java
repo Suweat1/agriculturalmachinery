@@ -44,7 +44,11 @@ public abstract class AgriculturalMachineryInfo {
         this.baseRent = baseRent;
     }
 
-    /**
+        public double getBaseRent() {
+            return baseRent;
+        }
+
+        /**
      * 定义了Status枚举类，有IDLE闲置，IN_USE使用中，UNDER_MAINTENANCE维护中
      */
 

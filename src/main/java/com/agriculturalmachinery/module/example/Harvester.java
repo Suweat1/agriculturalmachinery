@@ -14,7 +14,7 @@ public class Harvester extends AgriculturalMachineryInfo {
     //粮仓容量
     double grainTankCapacity;
 
-    public Harvester(double cuttingWidth, double grainTankCapacity, String machineId, double baseRent) {
+    public Harvester(String machineId, double baseRent, double cuttingWidth, double grainTankCapacity) {
         super(machineId, baseRent);
         this.cuttingWidth = cuttingWidth;
         this.grainTankCapacity = grainTankCapacity;
@@ -54,12 +54,20 @@ public class Harvester extends AgriculturalMachineryInfo {
             return String.valueOf(cuttingWidth);
         }
 
+        public double getCuttingWidthDouble() {
+            return cuttingWidth;
+        }
+
         public void setCuttingWidth(double width) {
             this.cuttingWidth = width;
         }
 
         public String getGrainTankCapacity() {
             return String.valueOf(grainTankCapacity);
+        }
+
+        public double getGrainTankCapacityDouble() {
+            return grainTankCapacity;
         }
 
         public void setGrainTankCapacity(double capacity) {

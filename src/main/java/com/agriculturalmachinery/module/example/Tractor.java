@@ -15,7 +15,7 @@ public class Tractor extends AgriculturalMachineryInfo {
     double maxPullForce;
 
     //构造方法
-    public Tractor(double horsePower, double maxPullForce, String machineId, double baseRent) {
+    public Tractor(String machineId, double baseRent, double horsePower, double maxPullForce) {
         super(machineId, baseRent);
         this.horsePower = horsePower;
         this.maxPullForce = maxPullForce;
@@ -53,12 +53,22 @@ public class Tractor extends AgriculturalMachineryInfo {
          return String.valueOf(horsePower);
      }
 
+     public double getHorsePowerDouble() {
+         return horsePower;
+     }
+
      public void setHorsePower(double hp) {
          this.horsePower = hp;
      }
 
+
+
      public String getMaxPullForce() {
          return String.valueOf(maxPullForce);
+     }
+
+     public double getMaxPullForceDouble() {
+         return maxPullForce;
      }
 
      public void setMaxPullForce(double force) {
