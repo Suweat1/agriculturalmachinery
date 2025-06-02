@@ -48,4 +48,20 @@ public class Tractor extends AgriculturalMachineryInfo {
          String properValue = "马力：" + this.horsePower + "HP";
          return properValue;
      }
+
+     public String getHorsePower() {
+         return String.valueOf(horsePower);
+     }
+
+     public void setHorsePower(double hp) {
+         this.horsePower = hp;
+     }
+
+     public String getMaxPullForce() {
+         return String.valueOf(maxPullForce);
+     }
+
+     public void setMaxPullForce(double force) {
+         this.maxPullForce = force;
+     }
  }

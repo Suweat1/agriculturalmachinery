@@ -50,4 +50,19 @@ public class Harvester extends AgriculturalMachineryInfo {
      }
 
 
-}
+        public String getCuttingWidth() {
+            return String.valueOf(cuttingWidth);
+        }
+
+        public void setCuttingWidth(double width) {
+            this.cuttingWidth = width;
+        }
+
+        public String getGrainTankCapacity() {
+            return String.valueOf(grainTankCapacity);
+        }
+
+        public void setGrainTankCapacity(double capacity) {
+            this.grainTankCapacity = capacity;
+        }
+    }

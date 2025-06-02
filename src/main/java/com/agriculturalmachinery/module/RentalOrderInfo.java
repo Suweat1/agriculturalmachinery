@@ -7,7 +7,6 @@ import java.util.List;
     /**
      * 定义租赁订单模块的基本变量
      * 定义了抽象方法
-     * 部分属性需要通过Scanner输入
      */
 public abstract class RentalOrderInfo {
 
@@ -65,4 +64,24 @@ public abstract class RentalOrderInfo {
     public abstract void generateReceipt();
 
 
+    public void setRentalDays(int rentalDays) {
+        this.rentalDays = rentalDays;
+    }
+
+    public String generateReceiptText() {
+        StringBuilder receipt = new StringBuilder();
+        receipt.append("【订单编号】").append(getOrderId()).append("\n");
+        receipt.append("【租赁农机】\n");
+        for (int i = 0; i < machineryList.size(); i++) {
+            AgriculturalMachineryInfo machine = machineryList.get(i);
+            receipt.append(i + 1).append(". ")
+                    .append(machine.getMachineryName())
+                    .append("（编号：").append(machine.formatMachineId(i + 1))
+                    .append(", ").append(machine.getProperValue())
+                    .append(" × ").append(rentalDays).append("天 → 租金：")
+                    .append(rentalDays * machine.calculateRent()).append("元）\n");
+        }
+        receipt.append("【总费用】").append(calculateTotal()).append("元\n");
+        return receipt.toString();
+    }
 }
