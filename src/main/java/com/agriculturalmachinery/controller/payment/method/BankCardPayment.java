@@ -10,10 +10,6 @@ public class BankCardPayment extends PaymentInfo {
         this.cardNo = cardNo;
     }
     public boolean processPayment() {
-        System.out.println("正在通过银行卡支付金额："+paymentAmount+"卡号为"+cardNo);
         return true;
-
-
     }
-
 }

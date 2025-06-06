@@ -1,5 +1,7 @@
 package com.agriculturalmachinery.views;
 
+import com.agriculturalmachinery.controller.payment.PaymentManager;
+import com.agriculturalmachinery.controller.payment.PaymentResult;
 import com.agriculturalmachinery.controller.rentalorder.RentalOrder;
 import com.agriculturalmachinery.module.AgriculturalMachineryInfo;
 import com.agriculturalmachinery.module.example.Harvester;
@@ -92,6 +94,7 @@ public class MachineService {
         currentOrder.getMachineryList().clear();
         selectedMachines.forEach(currentOrder::addMachinery);
         currentOrder.setRentalDays(days);
+        rentalDays.set(days);
     }
 
     /*
@@ -132,4 +135,35 @@ public class MachineService {
     public String generateReceiptText() {
         return currentOrder.generateReceiptText();
     }
+
+    /*
+    清空订单
+    把租赁订单的租赁天数设置为1
+     */
+    public void clearOrder() {
+        currentOrder.getMachineryList().clear();
+        rentalDays.set(1);
+    }
+
+    /*
+    根据输入的option和credential
+        option决定哪个支付方式
+        credential是输入的账号
+     */
+    public PaymentResult payOrder(int option, int credential) {
+        if (currentOrder.getMachineryList().isEmpty()) {
+            return PaymentResult.NO_ORDER;
+        }
+
+        double totalCost = calculateTotalCost();
+        PaymentResult result = PaymentManager.processPayment(option, totalCost, credential);
+
+        if (result == PaymentResult.SUCCESS) {
+            clearOrder(); // 清空订单
+            return PaymentResult.SUCCESS;
+        } else {
+            return result;
+        }
+    }
+
 }

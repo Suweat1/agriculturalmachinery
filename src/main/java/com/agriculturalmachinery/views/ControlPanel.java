@@ -1,10 +1,12 @@
 package com.agriculturalmachinery.views;
 
+import com.agriculturalmachinery.controller.payment.PaymentResult;
+import com.agriculturalmachinery.controller.payment.method.WechatPayment;
 import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.control.Alert;
+import javafx.scene.layout.VBox;
+
 import java.util.Optional;
 
 /**
@@ -13,7 +15,13 @@ import java.util.Optional;
  * 继承自HBox，调用HBox中的组件
  */
 public class ControlPanel extends HBox {
+
+    private final OrderPanel orderPanel;
+    private final MachineService service;
     public ControlPanel(TractorTableView tableView, OrderPanel orderPanel, MachineService service) {
+        this.orderPanel = orderPanel; // ✅ 初始化引用
+        this.service = service;
+
         /*
         添加“租赁”按钮
         添加“添加”按钮
@@ -55,6 +63,8 @@ public class ControlPanel extends HBox {
             dialog.setHeaderText("请输入租赁天数");
             dialog.setContentText("天数:");
 
+
+
             /*
             用户输入完租赁天数后
             点击确定后的逻辑处理
@@ -81,10 +91,116 @@ public class ControlPanel extends HBox {
                 }
             });
         });
+
+
+        /*
+        用户点击支付
+            选择支付方式
+            * 支付宝
+            * 微信支付
+            * 银行卡支付
+        如果选择了 支付宝
+            就输入支付宝账号
+        然后完成支付
+         */
+        Button payBtn = new Button("支付");
+        this.getChildren().add(payBtn);
+
+        payBtn.setOnAction(e -> {
+            if (service.getOrderItems().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "请先创建订单");
+                alert.showAndWait();
+                return;
+            }
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setTitle("选择支付方式");
+            VBox content = new VBox(10);
+            ToggleGroup group = new ToggleGroup();
+
+            RadioButton wechat = new RadioButton("微信支付");
+            RadioButton alipay = new RadioButton("支付宝支付");
+            RadioButton bankcard = new RadioButton("银行卡支付");
+            group.getToggles().addAll(wechat, alipay, bankcard);
+            content.getChildren().addAll(wechat, alipay, bankcard);
+
+            dialog.getDialogPane().setContent(content);
+            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+            Optional<ButtonType> Result = dialog.showAndWait();
+            if (Result.orElse(null) == ButtonType.OK) {
+                int option;
+                if (wechat.isSelected()) option = 1;
+                else if (alipay.isSelected()) option = 2;
+                else if (bankcard.isSelected()) option = 3;
+                else {
+                    option = 0;
+                }
+
+                if (option < 1 || option > 3) return;
+
+                TextInputDialog inputDialog = new TextInputDialog();
+
+                //分情况展示对话框
+                switch (option) {
+                    case 1:
+                        inputDialog.setHeaderText("请输入微信OpenID");
+                        inputDialog.setTitle("正在使用微信支付");
+                        inputDialog.showAndWait().ifPresent(openId -> {
+                            PaymentResult paymentResult = service.payOrder(option, Integer.parseInt(openId));
+                            handlePaymentResult(paymentResult);
+                        });
+                        break;
+
+                    case 2:
+                        inputDialog.setHeaderText("请输入支付宝账号");
+                        inputDialog.setTitle("正在使用支付宝支付");
+                        inputDialog.showAndWait().ifPresent(account -> {
+                            PaymentResult paymentResult = service.payOrder(option, Integer.parseInt(account));
+                            handlePaymentResult(paymentResult);
+                        });
+                        break;
+
+                    case 3:
+                        inputDialog.setHeaderText("请输入银行卡号");
+                        inputDialog.setTitle("正在使用银行卡支付");
+                        inputDialog.showAndWait().ifPresent(card -> {
+                            PaymentResult paymentResult = service.payOrder(option, Integer.parseInt(card));
+                            handlePaymentResult(paymentResult);
+                        });
+                        break;
+                }
+            }
+        });
+
     }
 
-    //支付按钮（暂未实现相关功能）
-    public Button getPayButton() {
-        return (Button) getChildren().get(2);
+    /*
+    根据PaymentResult枚举类
+        分情况展示支付状况
+    处理支付问题
+     */
+    private void handlePaymentResult(PaymentResult result) {
+        switch (result) {
+            case SUCCESS:
+                Alert success = new Alert(Alert.AlertType.INFORMATION, "支付成功！");
+                success.showAndWait();
+                orderPanel.getOrderListView().getItems().clear();
+                orderPanel.getTotalCostLabel().setText("总费用: ¥0.00");
+                break;
+            case FAILURE:
+                Alert fail = new Alert(Alert.AlertType.ERROR, "支付失败，请重试");
+                fail.showAndWait();
+                break;
+            case INVALID_INPUT:
+                Alert invalid = new Alert(Alert.AlertType.WARNING, "输入信息无效");
+                invalid.showAndWait();
+                break;
+            case NO_ORDER:
+                Alert noOrder = new Alert(Alert.AlertType.WARNING, "当前没有订单");
+                noOrder.showAndWait();
+                break;
+        }
     }
+
 }

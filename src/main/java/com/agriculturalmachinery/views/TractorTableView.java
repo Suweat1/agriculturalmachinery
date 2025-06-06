@@ -22,7 +22,7 @@ public class TractorTableView extends VBox {
     public TractorTableView(MachineService service) {
         this.service = service;
         this.tableView = new TableView<>();
-        tableView.setItems(service.getSelectableMachines()); // ✅ 直接绑定服务层数据
+        tableView.setItems(service.getSelectableMachines()); //直接绑定服务层数据
         tableView.setEditable(true);
         setupTableColumns();
         setupLayout();
