@@ -6,7 +6,7 @@ import com.haubigdata24_12.agriculturalmachinery.controller.payment.method.BankC
 import com.haubigdata24_12.agriculturalmachinery.controller.payment.method.WechatPayment;
 import com.haubigdata24_12.agriculturalmachinery.model.PaymentInfo;
 
-public class PaymentMannager {
+public class PaymentManager {
 
     public static PaymentResult processPayment(int option, double amount, int credential) {
         try {

@@ -1,6 +1,6 @@
 package com.haubigdata24_12.agriculturalmachinery.views;
 
-import com.haubigdata24_12.agriculturalmachinery.controller.payment.PaymentMannager;
+import com.haubigdata24_12.agriculturalmachinery.controller.payment.PaymentManager;
 import com.haubigdata24_12.agriculturalmachinery.controller.payment.PaymentResult;
 import com.haubigdata24_12.agriculturalmachinery.controller.rentalorder.RentalOrder;
 import com.haubigdata24_12.agriculturalmachinery.model.AgriculturalMachineryInfo;
@@ -159,7 +159,7 @@ public class MachineService {
         }
 
         double totalCost = calculateTotalCost();
-        PaymentResult result = PaymentMannager.processPayment(option, totalCost, credential);
+        PaymentResult result = PaymentManager.processPayment(option, totalCost, credential);
 
         if (result == PaymentResult.SUCCESS) {
             clearOrder(); // 清空订单
