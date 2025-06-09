@@ -23,7 +23,7 @@ public class MachineService {
     初始化表格中的前两行数据
     马力 100 最大马力 200
     割台宽度 100 粮仓容量 200
-     */
+     */                                                                    //提供了observableArrayList的监听器属性
     private final ObservableList<SelectableMachine> selectableMachines = FXCollections.observableArrayList(
             new SelectableMachine(new Tractor("TR", 100,  50 ,200)),
             new SelectableMachine(new Harvester("HV", 150, 100, 200))
@@ -35,10 +35,12 @@ public class MachineService {
     //定义当前订单
     private final RentalOrder currentOrder = new RentalOrder();
 
+    //返回被选择的列表
     public ObservableList<SelectableMachine> getSelectableMachines() {
         return selectableMachines;
     }
 
+    //返回作为订单的项目
     public ObservableList<OrderItem> getOrderItems() {
         return orderItems;
     }

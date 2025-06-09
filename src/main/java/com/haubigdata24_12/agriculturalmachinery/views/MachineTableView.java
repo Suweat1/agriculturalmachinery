@@ -12,8 +12,11 @@ import javafx.scene.layout.*;
 import javafx.util.StringConverter;
 
 public class MachineTableView extends VBox {
+    //tableView用于显示对勾
     private final TableView<SelectableMachine> tableView;
+    //service的实例，便于调用MachineService类的方法
     private final MachineService service;
+    //
     private ComboBox<TypeMachine> machineTypeComboBox = new ComboBox<>();
 
     public ComboBox<TypeMachine> getMachineTypeComboBox() {
@@ -33,6 +36,7 @@ public class MachineTableView extends VBox {
         return tableView;
     }
 
+    //初始化表格变量（行变量为索引，列表量有选择、订单序号、特征值）
     private void setupTableColumns() {
         // 复选框列
         TableColumn<SelectableMachine, Boolean> selectCol = new TableColumn<>("选择");
@@ -62,11 +66,18 @@ public class MachineTableView extends VBox {
         tableView.getColumns().add(prop2Col);
     }
 
+    //绘制表格
     private void setupLayout() {
         // 类型选择框
+        /*
+        选择
+            * 拖拉机
+            * 收割机
+        默认选择拖拉机
+         */
         machineTypeComboBox.getItems().addAll(TypeMachine.values());
         machineTypeComboBox.setValue(TypeMachine.TRACTOR);
-        machineTypeComboBox.setConverter(new StringConverter<>() {
+        machineTypeComboBox.setConverter(new StringConverter<>() {//匿名内部类
             @Override
             public String toString(TypeMachine type) {
                 return type != null ? type.getDisplayName() : "";
@@ -78,13 +89,15 @@ public class MachineTableView extends VBox {
             }
         });
 
-        // 表头和操作栏
+        // 绘制表头和操作栏
+        //开始绘制
         HBox header = new HBox(new Label("租赁信息："));
         header.setAlignment(Pos.CENTER_LEFT);
 
         HBox operationBox = new HBox(10, new Label("选择农机类型："), machineTypeComboBox);
         operationBox.setAlignment(Pos.CENTER_LEFT);
 
+        //设置大小行高、间距
         GridPane gridPane = new GridPane();
         gridPane.addColumn(0, tableView);
         gridPane.setHgap(10);
@@ -103,5 +116,6 @@ public class MachineTableView extends VBox {
         gridPane.getRowConstraints().addAll(row0, row1);
 
         this.getChildren().addAll(header, operationBox, gridPane);
+        //绘制结束
     }
 }

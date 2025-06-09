@@ -9,10 +9,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class SelectableMachine {
+
+    //实例化AgriculturalMachineryInfo，方便后续方法调用
     private AgriculturalMachineryInfo machine;
+    //定义是否被选择的bool对象，可被监听
     private final BooleanProperty selected = new SimpleBooleanProperty(false);
 
-    // 新增两个 StringProperty 字段，用于绑定表格列
+    //StringProperty 字段，用于绑定表格列
     private final StringProperty firstProperty = new SimpleStringProperty();
     private final StringProperty secondProperty = new SimpleStringProperty();
 
