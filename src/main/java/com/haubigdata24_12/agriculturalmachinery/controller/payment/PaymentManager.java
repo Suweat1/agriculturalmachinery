@@ -8,7 +8,7 @@ import com.haubigdata24_12.agriculturalmachinery.model.PaymentInfo;
 
 public class PaymentManager {
 
-    public static PaymentResult processPayment(int option, double amount, int credential) {
+    public static PaymentResult processPayment(int option, double amount, long credential) {
         try {
             PaymentInfo payment;
             switch (option) {

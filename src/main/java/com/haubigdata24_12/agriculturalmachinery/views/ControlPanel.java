@@ -149,7 +149,7 @@ public class ControlPanel extends HBox {
                         inputDialog.showAndWait().ifPresent(openId -> {
                             if (validateAccount(1, openId)) {
                                 try {
-                                    PaymentResult paymentResult = service.payOrder(option, Integer.parseInt(openId));
+                                    PaymentResult paymentResult = service.payOrder(option, Long.parseLong(openId));
                                     handlePaymentResult(paymentResult);
                                 } catch (NumberFormatException err) {
                                     showAlert("输入错误", "请输入有效的数字");
@@ -166,7 +166,7 @@ public class ControlPanel extends HBox {
                         inputDialog.showAndWait().ifPresent(account -> {
                             if (validateAccount(2, account)) {
                                 try {
-                                    PaymentResult paymentResult = service.payOrder(option, Integer.parseInt(account));
+                                    PaymentResult paymentResult = service.payOrder(option, Long.parseLong(account));
                                     handlePaymentResult(paymentResult);
                                 } catch (NumberFormatException err) {
                                     showAlert("输入错误", "请输入有效的数字");
@@ -183,7 +183,7 @@ public class ControlPanel extends HBox {
                         inputDialog.showAndWait().ifPresent(card -> {
                             if (validateAccount(3, card)) {
                                 try {
-                                    PaymentResult paymentResult = service.payOrder(option, Integer.parseInt(card));
+                                    PaymentResult paymentResult = service.payOrder(option, Long.parseLong(card));
                                     handlePaymentResult(paymentResult);
                                 } catch (NumberFormatException err) {
                                     showAlert("输入错误", "请输入有效的数字");

@@ -153,7 +153,7 @@ public class MachineService {
         option决定哪个支付方式
         credential是输入的账号
      */
-    public PaymentResult payOrder(int option, int credential) {
+    public PaymentResult payOrder(int option, long credential) {
         if (currentOrder.getMachineryList().isEmpty()) {
             return PaymentResult.NO_ORDER;
         }
