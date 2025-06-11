@@ -17,6 +17,7 @@ public class ControlPanel extends HBox {
 
     private final OrderPanel orderPanel;
     private final MachineService service;
+
     public ControlPanel(MachineTableView tableView, OrderPanel orderPanel, MachineService service) {
         this.orderPanel = orderPanel; // ✅ 初始化引用
         this.service = service;
@@ -146,8 +147,16 @@ public class ControlPanel extends HBox {
                         inputDialog.setHeaderText("请输入微信OpenID");
                         inputDialog.setTitle("正在使用微信支付");
                         inputDialog.showAndWait().ifPresent(openId -> {
-                            PaymentResult paymentResult = service.payOrder(option, Integer.parseInt(openId));
-                            handlePaymentResult(paymentResult);
+                            if (validateAccount(1, openId)) {
+                                try {
+                                    PaymentResult paymentResult = service.payOrder(option, Integer.parseInt(openId));
+                                    handlePaymentResult(paymentResult);
+                                } catch (NumberFormatException err) {
+                                    showAlert("输入错误", "请输入有效的数字");
+                                }
+                            } else {
+                                showAlert("格式错误", "微信OpenID必须为11位数字");
+                            }
                         });
                         break;
 
@@ -155,8 +164,16 @@ public class ControlPanel extends HBox {
                         inputDialog.setHeaderText("请输入支付宝账号");
                         inputDialog.setTitle("正在使用支付宝支付");
                         inputDialog.showAndWait().ifPresent(account -> {
-                            PaymentResult paymentResult = service.payOrder(option, Integer.parseInt(account));
-                            handlePaymentResult(paymentResult);
+                            if (validateAccount(2, account)) {
+                                try {
+                                    PaymentResult paymentResult = service.payOrder(option, Integer.parseInt(account));
+                                    handlePaymentResult(paymentResult);
+                                } catch (NumberFormatException err) {
+                                    showAlert("输入错误", "请输入有效的数字");
+                                }
+                            } else {
+                                showAlert("格式错误", "支付宝账号必须为11位数字");
+                            }
                         });
                         break;
 
@@ -164,8 +181,16 @@ public class ControlPanel extends HBox {
                         inputDialog.setHeaderText("请输入银行卡号");
                         inputDialog.setTitle("正在使用银行卡支付");
                         inputDialog.showAndWait().ifPresent(card -> {
-                            PaymentResult paymentResult = service.payOrder(option, Integer.parseInt(card));
-                            handlePaymentResult(paymentResult);
+                            if (validateAccount(3, card)) {
+                                try {
+                                    PaymentResult paymentResult = service.payOrder(option, Integer.parseInt(card));
+                                    handlePaymentResult(paymentResult);
+                                } catch (NumberFormatException err) {
+                                    showAlert("输入错误", "请输入有效的数字");
+                                }
+                            } else {
+                                showAlert("格式错误", "支付宝账号必须为11位数字");
+                            }
                         });
                         break;
                 }
@@ -200,6 +225,39 @@ public class ControlPanel extends HBox {
                 noOrder.showAndWait();
                 break;
         }
+    }
+
+    /*
+     验证输入格式是否符合要求
+     option 支付方式选项（1-微信OpenID，2-支付宝账号，3-银行卡号）
+     input 输入内容
+     是否通过验证
+     */
+    private boolean validateAccount(int option, String input) {
+        if (input == null || input.isEmpty()) {
+            return false;
+        }
+
+        // 检查是否全为数字
+        if (!input.matches("\\d+")) {
+            return false;
+        }
+
+        // 根据支付类型验证长度
+        return switch (option) { // 微信OpenID
+            case 1, 2 -> // 支付宝账号
+                    input.length() == 11;
+            case 3 -> // 银行卡号
+                    input.length() == 19;
+            default -> false;
+        };
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
 }
